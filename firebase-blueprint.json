@@ -1,0 +1,130 @@
+{
+  "entities": {
+    "agenda_profiles": {
+      "title": "Perfis da Agenda Comercial",
+      "description": "Perfis de usuários com papeis de acesso (admin, comercial, agendador, financeiro)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "comercial", "agendador", "financeiro"] },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "name", "email", "role"]
+    },
+    "agenda_appointments": {
+      "title": "Agendamentos",
+      "description": "Agendamentos comerciais de reuniões e visistas",
+      "type": "object",
+      "properties": {
+        "clientName": { "type": "string" },
+        "clientEmail": { "type": "string" },
+        "clientPhone": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "planId": { "type": "string" },
+        "assignedTo": { "type": "string" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "completed", "cancelled"] },
+        "slotKey": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["clientName", "clientEmail", "clientPhone", "date", "time", "assignedTo", "status"]
+    },
+    "agenda_slot_locks": {
+      "title": "Bloqueios Atômicos de Horário",
+      "description": "Garante atômica impedindo agendamentos duplos no mesmo slotKey",
+      "type": "object",
+      "properties": {
+        "slotKey": { "type": "string" },
+        "appointmentId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["slotKey", "createdAt"]
+    },
+    "agenda_sales": {
+      "title": "Vendas Comerciais",
+      "description": "Registro de vendas e comissões da equipe",
+      "type": "object",
+      "properties": {
+        "sellerId": { "type": "string" },
+        "sellerName": { "type": "string" },
+        "clientName": { "type": "string" },
+        "planId": { "type": "string" },
+        "planName": { "type": "string" },
+        "amount": { "type": "number" },
+        "commissionPercentage": { "type": "number" },
+        "commissionAmount": { "type": "number" },
+        "saleDate": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["sellerId", "clientName", "amount", "saleDate"]
+    },
+    "agenda_plans": {
+      "title": "Planos e Serviços",
+      "description": "Catálogo de planos disponíveis para agendamento",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "durationMinutes": { "type": "number" },
+        "price": { "type": "number" },
+        "active": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["name", "durationMinutes", "price"]
+    },
+    "agenda_availability": {
+      "title": "Grade de Disponibilidade",
+      "description": "Configuração semanal de horários por dia",
+      "type": "object",
+      "properties": {
+        "dayOfWeek": { "type": "number" },
+        "dayName": { "type": "string" },
+        "active": { "type": "boolean" },
+        "slots": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["dayOfWeek", "active"]
+    },
+    "agenda_blocked_dates": {
+      "title": "Datas Bloqueadas e Feriados",
+      "description": "Bloqueios de calendário e feriados",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string" },
+        "reason": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["date"]
+    },
+    "agenda_notifications": {
+      "title": "Notificações do Sistema",
+      "description": "Notificações individuais por usuário",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "title", "message", "read"]
+    },
+    "agenda_history": {
+      "title": "Histórico de Auditoria",
+      "description": "Registro de auditoria para ações executadas no sistema",
+      "type": "object",
+      "properties": {
+        "action": { "type": "string" },
+        "userId": { "type": "string" },
+        "userName": { "type": "string" },
+        "details": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["action", "userId", "createdAt"]
+    }
+  }
+}

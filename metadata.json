@@ -1,0 +1,6 @@
+{
+  "name": "Ponto Chave - Agenda Comercial",
+  "description": "Sistema integrado Ponto Chave com gestão de agendamentos comerciais, vendas, comissões, relatórios e agendamento público seguro com Firebase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
